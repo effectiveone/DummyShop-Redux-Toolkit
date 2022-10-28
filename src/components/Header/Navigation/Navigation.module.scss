@@ -1,0 +1,39 @@
+@import 'assets/styles/scss/main.module.scss';
+
+
+.row {
+    grid-column: 1;
+  @include column-div;
+   position: relative;
+   margin: 50px 0 50px 0;
+   width: 250px;
+   height: 500px;
+   coursor: pointer;
+   & .btnPlus{
+    position: absolute;
+    top: -20px;
+    width: 250px;
+
+   }
+   & .btnMinus{
+    position: absolute;
+    bottom: 80px;
+    width: 250px;
+   }
+div {
+    border: 1px solid $backgroundColorDuo;
+   
+
+    height: 50px;
+ @include center-div;
+    &>p {
+        coursor: pointer;
+
+        text-align: center;
+ 
+    }
+}
+
+
+}
+

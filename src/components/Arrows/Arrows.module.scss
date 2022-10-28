@@ -1,0 +1,23 @@
+@import 'assets/styles/scss/main.module.scss';
+
+.ArrowWrapper{
+    background: rgba(32,32,32,0.5);
+    height: 60px;
+    width: 40px;
+    left: 0;
+    top: 0;
+    color: black;
+    cursor: pointer;
+@include center-div;
+    border: 0.5px solid white;
+
+    svg:focus {
+        outline: 0}
+
+    &:hover {
+        transition: 250ms linear;
+        transform: scale(1.1);
+    }
+}
+  
+  

@@ -1,0 +1,58 @@
+@import 'assets/styles/scss/main.module.scss';
+
+
+  .border{
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+padding-bottom: 50px;
+gap: 20px;
+  & .props {
+    background-color: $backgroundColorDuo;
+    border: 1px solid white;
+    height: 200px;
+    @include center-div;
+  }
+  }
+
+.slideContainer {
+    background-color: #1A1A1A;
+    width: 180px;
+    &> img {
+        height: 270px;
+        width: 180px;
+    }
+
+}
+
+.box {
+    padding: 10px 5px 5px 5px; 
+    color: white;
+    display: grid;
+   
+    grid-template-rows: 40px 50px 40px 50px;
+    &> div:nth-child(1)  {
+        display: grid;
+        grid-template-colums: 1fr 1fr 1fr;
+        grid-template-rows: 1fr
+    }
+    &> div:nth-child(2) >h3 {
+        color: white
+    }
+    &> div:nth-child(3) {
+        @include center-div;
+        background-Color: $primary-color;
+        color: rgba(87, 153, 239, 1);
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        &:hover {
+            background-color: rgba(60,	60,	60, 0.8);
+        }
+    }
+    &> div:nth-child(4) {
+        @include center-div;
+    &:hover {
+        background-color: $backgroundColor;
+    }
+    }
+}
