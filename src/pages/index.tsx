@@ -9,6 +9,9 @@ import { useAppDispatch, useAppSelector } from '../hooks/reduxHooks';
 import { useGetProductsQuery } from "../store/reducers/itemSlice";
 import Header from "../components/Header/Header"
 import MainPageProductSlider from "../components/sections/MainPageProductSlider/MainPageProductSlider"
+import HotDeal from "../components/sections/HotDeal//HotDeal"
+import Product from "../components/sections/Product/Product"
+import Footer from "../components/Footer/Footer"
 import Navbar from "../components/Header/Navbar/Navbar"
 
 const Home: NextPage = () => {
@@ -32,10 +35,14 @@ const Home: NextPage = () => {
 <Container>
 <Header product={product}
 
-/>
+/> 
 <MainPageProductSlider/>
 </Container>
-
+<HotDeal/> 
+<Container>
+<Product/>
+    </Container>
+<Footer/>
         </div>
     );
 };

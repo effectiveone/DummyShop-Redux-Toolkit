@@ -4,9 +4,17 @@ import { useAppDispatch, useAppSelector } from '../../../hooks/reduxHooks';
 import { useGetCategoriesQuery } from "../../../store/reducers/itemSlice";
 import uuid from "react-uuid"
 import style from "./Navigation.module.scss";
+import { useSelector, useDispatch } from "react-redux";
 
 const Navigation: React.FC = () => {
     const [numberOfCategory, setNumberOfCategory] = useState(0)
+
+    const NumberItemsInCard = useSelector((state) => state.card);
+
+
+    console.log("how many NumberItemsInCard", NumberItemsInCard.items.length)
+
+
     const dispatch = useAppDispatch();
 const {
         data, error, isLoading

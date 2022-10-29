@@ -4,13 +4,14 @@ import Link from 'next/link';
 import { AiOutlinePlus, AiOutlineStar, AiFillStar } from 'react-icons/ai';
 import { MdFavoriteBorder, MdFavorite } from 'react-icons/md';
 import react, {useState, useEffect} from "react"
-import { BsBookmarkPlusFill, BsFillBookmarkCheckFill, BsCheckLg } from 'react-icons/bs';
+import { BsBookmarkPlusFill, BsFillBookmarkCheckFill, BsCheckLg, BsFillBasketFill } from 'react-icons/bs';
 import { IconContext } from 'react-icons';
 import { useAppDispatch, useAppSelector } from '../../../hooks/reduxHooks';
 import { Modal } from '@mui/material';
 import { Box } from '@mui/material';
 import { Typography } from '@mui/material';
-
+import { addToCart } from "../../../store/reducers/cartSlice";
+import { AddToWatchList } from "../../../store/reducers/watchListSlice";
 
 
 const SlideSchema = (props: any) =>  {
@@ -32,66 +33,60 @@ const addButton = (
 )
 
 
-
-const [isOpen, setIsOpen]= useState<boolean>(false)
-const handleModal = () => {
-  setIsOpen(!isOpen)
-}
-
-const Pixels = (e) => {
-  const px = e*3;
-  return px + 'px'
-}
+const dispatch = useAppDispatch();
 
 
 
+const FavHanlder = (item, index) => {
 
-const schemaModal = (<Modal
-  // backgroundColor: "#1A1A1A"
-  open={isOpen}
-  onClose={handleModal}
-  aria-labelledby="modal-modal-title"
-  aria-describedby="modal-modal-description"
-  style={{display:'flex',alignItems:'center',justifyContent:'center'}}
->
+ dispatch(
+     addToCart({
+      amount: 1,   
+     id: item.id,
+     img: item.poster_path,
+     title: item.title,
+     desc: item.vdescription,
+     price: item.price,
+     discountPercentage: item.discountPercentage,
+     rating: item.rating,
+     stock: item.stock,
+     brand: item.brand,
+     category: item.category
+   })
+   
+ );
+};
+const listOfWatchList = useAppSelector((state) => state?.watchList?.watchList);
+console.log("listOfWatchList", listOfWatchList)
+const [likes, setLikes] = useState([]);
 
-       
-      
-               
-  <Box style={{position: "relative", display: "flex", justifyContent: "center", backgroundColor: "#1A1A1A", height: "250px", width: "500px",  flexDirection: "column", alignItems: "center", color: "white"}}>
-    
-  <div style={{position: "absolute", top: `calc(-50px +10px ) }`}}>
-                  <IconContext.Provider
-      value={{ color: 'blue', size: "calc(100px +10px)" }}
-    >
-      <div className="fav" style={{position: "relative", display: "flex", justifyContent: "center", alignItems: "center"}}>
-      <AiFillStar/> 
-      <p style={{position: "absolute", color: "white", zIndex: "10", }}>{ranking ?? "?"}</p>
-        </div>
-        </IconContext.Provider>                  </div>
-    
-    <Typography id="modal-modal-title" variant="h6" component="h2">
-   <h3 style={{color: "rgb(245,197,24)"}}> RATE THIS</h3>
-    </Typography>
-    <Typography id="modal-modal-title" variant="h6" component="h2">
-    <p style={{color: "white"}}>{props.title}</p>
-    </Typography>
-    <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-    <Rating
-  name="simple-controlled"
-  size="large"
-  style={{borderColor: "white", color: "blue", size: "20px"}}
-  value={ranking}
-  max={10}
+useEffect(() => {
+const zonk =  Object.values(listOfWatchList.map(z => z.id))
+setLikes(likes=>([
+ // ...likes,
+ ...zonk]
+))
+},
+ [listOfWatchList])
+const AddingToWatchList = (item, index) => {
 
-/>
+ dispatch(
+     AddToWatchList({
+     id: item.id,
+     img: item.poster_path,
+     title: item.title,
+     desc: item.vdescription,
+     price: item.price,
+     discountPercentage: item.discountPercentage,
+     rating: item.rating,
+     stock: item.stock,
+     brand: item.brand,
+     category: item.category
+   })
+   
+ );
+};
 
-    </Typography>
-    <Typography id="modal-modal-title" variant="h6" component="h2" style={{marginTop: "20px"}}>
-    <button style={{width: "240px", backgroundColor: "rgb(245,197,24)"}}>Rate</button>
-    </Typography>
-  </Box>
-</Modal>)
 
 
     return (
@@ -101,7 +96,7 @@ const schemaModal = (<Modal
 <Link href={`/movie/${props.id}`}>
   <img src={props.thumbnail}
 width="180"
-height="270px"
+height="180px"
 /></Link>
 {addButton}
 </div>
@@ -112,16 +107,15 @@ height="270px"
                   <IconContext.Provider
       value={{ color: 'blue', size: '25px' }}
     >
-      <div className="fav" onClick={handleModal}>
+      <div className="fav" onClick={() => AddingToWatchList(props, props.id)}>
       <AiOutlineStar/> 
         </div>
         </IconContext.Provider>                  </div>
-        {schemaModal}
 </div>
 <div><Link href={`/movie/${props.id}`}><h3>{props.title}</h3></Link></div>
-<div style={{display: "flex", flexDirection: "row"}}> <div className="fav" >
-    <BsCheckLg/> </div>
-<div>Trailer</div>
+<div style={{display: "flex", flexDirection: "row"}}> <div className="fav" onClick={() => FavHanlder(props, props.id)}>
+    <BsFillBasketFill/> </div>
+<div onClick={() => FavHanlder(props, props.id)}>Add to card</div>
 </div>
 </div>
 </div>

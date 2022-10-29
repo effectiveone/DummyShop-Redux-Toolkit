@@ -11,11 +11,15 @@ import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
 import MenuIcon from '@mui/icons-material/Menu';
 import SearchIcon from '@mui/icons-material/Search';
-import AccountCircle from '@mui/icons-material/AccountCircle';
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import MailIcon from '@mui/icons-material/Mail';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import MoreIcon from '@mui/icons-material/MoreVert';
 import { Container } from '@mui/material';
+import LocalGroceryStoreIcon from '@mui/icons-material/LocalGroceryStore';
+import Logo from "../../../assets/images/logo.png"
+import { useSelector, useDispatch } from "react-redux";
+
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -25,39 +29,53 @@ const Search = styled('div')(({ theme }) => ({
     backgroundColor: alpha(theme.palette.common.white, 0.25),
   },
   marginRight: theme.spacing(2),
-  marginLeft: 0,
+  
   width: '100%',
+  transform: "translateX(200px)", 
+
   [theme.breakpoints.up('sm')]: {
     marginLeft: theme.spacing(3),
     width: 'auto',
+
   },
 }));
 
 const SearchIconWrapper = styled('div')(({ theme }) => ({
   padding: theme.spacing(0, 2),
+
   height: '100%',
+  width: '500px',
   position: 'absolute',
   pointerEvents: 'none',
   display: 'flex',
   alignItems: 'center',
-  justifyContent: 'center',
+  justifyContent: 'right',
 }));
 
 const StyledInputBase = styled(InputBase)(({ theme }) => ({
   color: 'inherit',
+  marginRight: "-50px",
+  borderRadius: "50%",
   '& .MuiInputBase-input': {
+
     padding: theme.spacing(1, 1, 1, 0),
     // vertical padding + font size from searchIcon
     paddingLeft: `calc(1em + ${theme.spacing(4)})`,
     transition: theme.transitions.create('width'),
-    width: '100%',
+    width: '500px',
     [theme.breakpoints.up('md')]: {
-      width: '20ch',
-    },
+      width: '500px',
+   },
   },
 }));
 
 export default function PrimarySearchAppBar() {
+  const card = useSelector((state) => state.card);
+  const watchList = useSelector((state) => state.watchList);
+  const  NumberItemsInCard = card.items.length;
+  const  NumberwatchList = watchList.watchList.length;
+
+
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] =
     React.useState<null | HTMLElement>(null);
@@ -149,7 +167,7 @@ export default function PrimarySearchAppBar() {
           aria-haspopup="true"
           color="inherit"
         >
-          <AccountCircle />
+         <LocalGroceryStoreIcon/>
         </IconButton>
         <p>Profile</p>
       </MenuItem>
@@ -160,25 +178,17 @@ export default function PrimarySearchAppBar() {
 
     <Box sx={{ flexGrow: 1 }}>
          
-      <AppBar position="static">
+      <AppBar position="static" style={{height: "100px", backgroundColor: "black"}}>
       <Container>
         <Toolbar>
-          <IconButton
-            size="large"
-            edge="start"
-            color="inherit"
-            aria-label="open drawer"
-            sx={{ mr: 2 }}
-          >
-            <MenuIcon />
-          </IconButton>
+    
           <Typography
             variant="h6"
             noWrap
             component="div"
             sx={{ display: { xs: 'none', sm: 'block' } }}
           >
-            MUI
+            <img src={Logo.src} height="80px" width="150px"/>
           </Typography>
           <Search>
             <SearchIconWrapper>
@@ -192,8 +202,13 @@ export default function PrimarySearchAppBar() {
           <Box sx={{ flexGrow: 1 }} />
           <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
             <IconButton size="large" aria-label="show 4 new mails" color="inherit">
-              <Badge badgeContent={4} color="error">
-                <MailIcon />
+            
+
+              <Badge badgeContent={NumberwatchList} color="error" style={{display: "flex", flexDirection: "column", alignItems: "center"}}>
+           <div style={{marginRight: "-20px"}}>
+              <FavoriteBorderIcon/>
+             <p style={{fontSize: "14px"}}> Your Wishlist</p>
+             </div>
               </Badge>
             </IconButton>
             <IconButton
@@ -201,8 +216,11 @@ export default function PrimarySearchAppBar() {
               aria-label="show 17 new notifications"
               color="inherit"
             >
-              <Badge badgeContent={17} color="error">
-                <NotificationsIcon />
+              <Badge badgeContent={NumberItemsInCard} color="error" style={{display: "flex", flexDirection: "column", alignItems: "center"}}>
+           <div style={{marginRight: "-20px"}}>
+              <LocalGroceryStoreIcon/>
+             <p style={{fontSize: "14px"}}> Your Card</p>
+             </div>
               </Badge>
             </IconButton>
             <IconButton
@@ -214,7 +232,6 @@ export default function PrimarySearchAppBar() {
               onClick={handleProfileMenuOpen}
               color="inherit"
             >
-              <AccountCircle />
             </IconButton>
           </Box>
           <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
@@ -232,6 +249,8 @@ export default function PrimarySearchAppBar() {
         </Toolbar>
             </Container>
       </AppBar>
+      <div style={{backgroundColor:"red", height: "10px", width: "100%"}}></div>
+
 
       {renderMobileMenu}
       {renderMenu}

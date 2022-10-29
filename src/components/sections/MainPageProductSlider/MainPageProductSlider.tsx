@@ -13,7 +13,7 @@ const MainPageProductSlider: React.FC = () => {
     const {
         data, error, isLoading
       }  = useGetProductsQuery();
-   console.log("datadatadata", data)
+   const     slides = data?.products   ;
 
       const [slideItem, setSlideItem] = useState(0)
       const incrementCountSlide = () => {
@@ -23,14 +23,18 @@ const MainPageProductSlider: React.FC = () => {
       const DecrementCountSlide = () => {
         setSlideItem(slideItem - 6 );
         };
-   const     slides = data?.products   ;
 
 
 const PropsOfShooping = [
-  {name: "Quality Product"},
-  {name: "Free Shipping"},
-  {name: "14-Day Return"},
-{ name: "24/7 Support"}]
+  {name: "Quality Product",
+color: "#EB8441"
+},
+  {name: "Free Shipping",
+color: "#0B5BDB"},
+  {name: "14-Day Return",
+color: "#00F241"},
+{ name: "24/7 Support", 
+color: "#E8CE00"}]
 
 
 
@@ -40,7 +44,7 @@ const PropsOfShooping = [
    className={styles.border}
     >
 {PropsOfShooping.map((Props) => (
-  <div key={uuid()} className={styles.props}>
+  <div key={uuid()} className={styles.props} style={{backgroundColor: Props.color}}>
 <p>{Props.name}</p>
     </div>
 ))}
