@@ -10,11 +10,21 @@ import { Rating } from '@mui/material';
 import { addToCart } from "../../../store/reducers/cartSlice";
 import { AddToWatchList } from "../../../store/reducers/watchListSlice";
 import { useSelector, useDispatch } from "react-redux";
+import Arrows from "../../Arrows/Arrows"
 
 
 const Product: React.FC = () =>{
+  const [slideItem, setSlideItem] = useState(0)
+  const incrementCountSlide = () => {
+    
+    setSlideItem( slideItem + 6);
+  };
+  const DecrementCountSlide = () => {
+    setSlideItem(slideItem - 6 );
+    };
 
-    const {
+
+  const {
         data, error, isLoading
       }  = useGetProductsQuery();
    const     products = data?.products;
@@ -30,9 +40,9 @@ const Product: React.FC = () =>{
         addToCart({
          amount: 1,   
         id: item.id,
-        img: item.poster_path,
         title: item.title,
-        desc: item.vdescription,
+        thumbnail: item.thumbnail,
+        description: item.description,
         price: item.price,
         discountPercentage: item.discountPercentage,
         rating: item.rating,
@@ -60,9 +70,9 @@ console.log("listOfWatchList", listOfWatchList)
     dispatch(
         AddToWatchList({
         id: item.id,
-        img: item.poster_path,
+        thumbnail: item.thumbnail,
+        description: item.description,
         title: item.title,
-        desc: item.vdescription,
         price: item.price,
         discountPercentage: item.discountPercentage,
         rating: item.rating,
@@ -74,11 +84,13 @@ console.log("listOfWatchList", listOfWatchList)
     );
   };
 
-
+const categories = ["SMARTPHONES"]
+  
     return(
 <>
+{/* <div className={style.navigation>{categories?.map(category =>  (<p onClick={ setCat(category)}>{category}</p> )}</div> */}
 <div className={style.container}>
-										{products?.slice(0,4).map((product, index) => {
+										{products?.slice(slideItem, (slideItem+4)).map((product, index) => {
 
 var oldPrice =  (product.price - (product.price * (-product.discountPercentage/100)));
 
@@ -98,11 +110,7 @@ var oldPrice =  (product.price - (product.price * (-product.discountPercentage/1
 												<h3 className={style.productName}><a href="#">{product.title}</a></h3>
 												<h4 className={style.productPrice}>{product.price} <del className={style.productOldPrice}>{(oldPrice.toFixed())}</del></h4>
 												<div className={style.productRating}>
-													{/* <i className={style.faStar}></i>
-													<i className={style.faStar}></i>
-													<i className={style.faStar}></i>
-													<i className={style.faStar}></i>
-													<i className={style.faStar}></i> */}
+											
                                                      <Rating
   name="simple-controlled"
   size="large"
@@ -116,16 +124,13 @@ var oldPrice =  (product.price - (product.price * (-product.discountPercentage/1
 												<div className={style.productBtns}>
 
 												 <button className={style.addToWishlist} onClick={() => AddingToWatchList(product, index)}>
-                                                    {/* <i className={ `${style.faGeartO}`}></i> */}
                                                     {likes.includes(product.id) ?  <MdFavorite/> : <MdFavoriteBorder/>}
                                                     <span className={style.tooltipp} >add to wishlist</span></button>
 													<button className={style.addToCompare}>
-                                                        {/* <i className={ `${style.faExchange}`}></i> */}
                                                         <MdOutlineCompareArrows/>
                                                         <span className={style.tooltipp}>add to compare</span></button>
 													<button className={style.quickView}>
                                                         <FaRegEye/>
-                                                        {/* <i className={ `${style.faEye}`}></i> */}
                                                         <span className={style.tooltipp}>quick view</span></button> 
 												</div>
 											</div>
@@ -133,12 +138,26 @@ var oldPrice =  (product.price - (product.price * (-product.discountPercentage/1
 												<button className={style.addToCartBtn} onClick={() => FavHanlder(product, index)}><i className={ `${style.faShoppingCart}`}></i> add to cart</button>
 											</div>
 										</div>
-
 </React.Fragment>
 
                                             )})}
 
-                                            </div>
+
+{slideItem > 0 && (    <div style={{ position: "absolute", top: "30%", left: "-2%" }}>
+            <Arrows
+              direction={"left"}
+              opacity={1}
+              handleClick={DecrementCountSlide}
+            />
+          </div>)}
+  {slideItem < 5 &&(        <div  style={{ position: "absolute", top: "30%", right: "0%" }}>
+            <Arrows
+              direction={"right"}
+              opacity={1}
+              handleClick={incrementCountSlide}
+            />
+          </div>)}
+</div>
                                         </>
     )}
 

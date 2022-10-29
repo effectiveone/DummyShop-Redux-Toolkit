@@ -12,7 +12,7 @@ export const DummyShopApi = createApi({
     getSingleProduct: builder.mutation({
         query: ({ query }) => {
           return {
-            url: `products/${query}`,
+            url: `/products/${query}`,
             method: "get",  
           };
         },
@@ -20,7 +20,7 @@ export const DummyShopApi = createApi({
       getSearchProduct: builder.mutation({
         query: ({ query }) => {
           return {
-            url: `products/search?q=${query}`,
+            url: `/products/search?q=${query}`,
             method: "get",  
           };
         },
@@ -30,9 +30,10 @@ getCategories: builder.query({
   query: () => '/products/categories'
 }),
     getProductFromCategory: builder.mutation({
-        query: ({ query }) => {
+
+        query: ( query ) => {
           return {
-            url: `products/category/${query}`,
+            url: `/products/category/${query}`,
             method: "get",  
           };
         },
@@ -44,7 +45,7 @@ export const { useGetProductsQuery,
     useGetCategoriesQuery, 
   useGetSingleProductMutation,
 useGetSearchProductMutation,
-useGetProductFromCategorytMutation
+useGetProductFromCategoryMutation
 } = DummyShopApi;
 
 export const { endpoints, reducerPath, reducer, middleware } = DummyShopApi

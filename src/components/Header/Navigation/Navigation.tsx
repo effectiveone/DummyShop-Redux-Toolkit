@@ -5,8 +5,11 @@ import { useGetCategoriesQuery } from "../../../store/reducers/itemSlice";
 import uuid from "react-uuid"
 import style from "./Navigation.module.scss";
 import { useSelector, useDispatch } from "react-redux";
+import Link from 'next/link';
+
 
 const Navigation: React.FC = () => {
+
     const [numberOfCategory, setNumberOfCategory] = useState(0)
 
     const NumberItemsInCard = useSelector((state) => state.card);
@@ -27,7 +30,7 @@ const {
 {data?.slice(numberOfCategory, (numberOfCategory + 8)).map((genres)=> (
 <React.Fragment key={uuid()}>
     <div>
-<p>{genres}</p>
+    <Link href={`/Categories/${genres}`}><p>{genres}</p></Link>
 </div>
 </React.Fragment>
 ))}

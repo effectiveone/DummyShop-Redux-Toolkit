@@ -28,25 +28,30 @@ const cartSlice = createSlice({
       state.totalCount = totalCount;
     },
     remove: (state, action) => {
-      state.items = state.items.filter((item) => item.id !== action.payload);
+      state.items = state.items.filter((item) => item.id !== action.payload.id);
     },
     increase: (state, action) => {
       state.items = state.items.map((item) => {
-        if (item.id === action.payload) {
+        if (item.id === action.payload.id) {
           return { ...item, amount: item.amount + 1 };
         }
         return item;
       });
     },
     decrease: (state, action) => {
-      state.items = state.items
-        .map((item) => {
-          if (item.id === action.payload) {
-            return { ...item, amount: item.amount - 1 };
-          }
-          return item;
-        })
-        .filter((item) => item.amount !== 0);
+      const item = state.items.find((item) => item.id === action.payload.id);
+      if (item.amount === 1) {
+        state.items = state.items.filter((item) => item.id !== action.payload.id);
+      } else {
+        item.amount--;
+      }
+      // state.items = state.items.map((item) => {
+      //   if (item.id === action.payload.id) {
+      //     return { ...item, amount: item.amount - 1 };
+      //   }
+      //   return item;
+      // });
+
     },
     clearCart: (state, action) => {
       state.items = [];
@@ -61,9 +66,9 @@ const cartSlice = createSlice({
          state.items.push({
             amount: 1,   
             id: payload.id,
-            img: payload.poster_path,
+            thumbnail: payload.thumbnail,
             title: payload.title,
-            desc: payload.vdescription,
+            description: payload.description,
             price: payload.price,
             discountPercentage: payload.discountPercentage,
             rating: payload.rating,

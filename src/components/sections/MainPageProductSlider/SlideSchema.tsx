@@ -43,10 +43,9 @@ const FavHanlder = (item, index) => {
      addToCart({
       amount: 1,   
      id: item.id,
-     img: item.poster_path,
      title: item.title,
-     desc: item.vdescription,
-     price: item.price,
+     thumbnail: item.thumbnail,
+     description: item.description,     price: item.price,
      discountPercentage: item.discountPercentage,
      rating: item.rating,
      stock: item.stock,
@@ -73,9 +72,9 @@ const AddingToWatchList = (item, index) => {
  dispatch(
      AddToWatchList({
      id: item.id,
-     img: item.poster_path,
      title: item.title,
-     desc: item.vdescription,
+     thumbnail: item.thumbnail,
+     description: item.description,
      price: item.price,
      discountPercentage: item.discountPercentage,
      rating: item.rating,
@@ -88,7 +87,7 @@ const AddingToWatchList = (item, index) => {
 };
 
 
-
+const oldPrice = (props.price - (props.price * (-props.discountPercentage/100)))
     return (
 <>
 <div className={styles.slideContainer}>
@@ -117,7 +116,11 @@ height="180px"
     <BsFillBasketFill/> </div>
 <div onClick={() => FavHanlder(props, props.id)}>Add to card</div>
 </div>
+<div style={{alignItems: "center", justifyContent: "center" }}>
+<h4 className={styles.productPrice}>{props.price} <del className={styles.productOldPrice}>{(oldPrice.toFixed())}</del></h4>
 </div>
+</div>
+
 </div>
 </>
 )

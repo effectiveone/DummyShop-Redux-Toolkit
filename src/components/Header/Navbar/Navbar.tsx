@@ -8,6 +8,7 @@ import Typography from '@mui/material/Typography';
 import InputBase from '@mui/material/InputBase';
 import Badge from '@mui/material/Badge';
 import MenuItem from '@mui/material/MenuItem';
+import Link from "next/link"
 import Menu from '@mui/material/Menu';
 import MenuIcon from '@mui/icons-material/Menu';
 import SearchIcon from '@mui/icons-material/Search';
@@ -217,10 +218,10 @@ export default function PrimarySearchAppBar() {
               color="inherit"
             >
               <Badge badgeContent={NumberItemsInCard} color="error" style={{display: "flex", flexDirection: "column", alignItems: "center"}}>
-           <div style={{marginRight: "-20px"}}>
+           <Link href="/Cart"><div style={{marginRight: "-20px"}}>
               <LocalGroceryStoreIcon/>
              <p style={{fontSize: "14px"}}> Your Card</p>
-             </div>
+             </div></Link>
               </Badge>
             </IconButton>
             <IconButton
