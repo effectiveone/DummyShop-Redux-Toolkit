@@ -1,8 +1,8 @@
 @import 'assets/styles/scss/main.module.scss';
 
 .footerContainer {
-	background: #15161D;
-	color: #B9BABC;
+    background: #15161d;
+    color: #b9babc;
 }
 
 .container {
@@ -12,58 +12,57 @@
 }
 
 .row {
-@include column-div;
-@include center-div;
+    @include column-div;
+    @include center-div;
 }
-
 
 .bottom-footer {
-	background: #1E1F29;
+    background: #1e1f29;
 }
 .footer {
-	margin: 30px 0px;
-	.footer-title {
-		color: #FFF;
-		text-transform: uppercase;
-		font-size: 18px;
-		margin: 0px 0px 30px;
-	}
+    margin: 30px 0px;
+    .footer-title {
+        color: #fff;
+        text-transform: uppercase;
+        font-size: 18px;
+        margin: 0px 0px 30px;
+    }
 }
 .footer-links {
-	li+li {
-		margin-top: 15px;
-	}
-	li {
-		a {
-			color: #B9BABC;
-			&:hover {
-				color: #D10024;
-			}
-		}
-		i {
-			margin-right: 15px;
-			color: #D10024;
-			width: 14px;
-			text-align: center;
-		}
-	}
+    li + li {
+        margin-top: 15px;
+    }
+    li {
+        a {
+            color: #b9babc;
+            &:hover {
+                color: #d10024;
+            }
+        }
+        i {
+            margin-right: 15px;
+            color: #d10024;
+            width: 14px;
+            text-align: center;
+        }
+    }
 }
 .copyright {
-transform: translate(140%, -50%);
+    transform: translate(140%, -50%);
     text-align: center;
     @include center-div;
-	margin-top: 30px;
-	display: block;
-	font-size: 12px;
+    margin-top: 30px;
+    display: block;
+    font-size: 12px;
 }
 .footer-payments {
-	li {
-		display: inline-block;
-		margin-right: 5px;
-		a {
-			color: #15161D;
-			font-size: 36px;
-			display: block;
-		}
-	}
+    li {
+        display: inline-block;
+        margin-right: 5px;
+        a {
+            color: #15161d;
+            font-size: 36px;
+            display: block;
+        }
+    }
 }

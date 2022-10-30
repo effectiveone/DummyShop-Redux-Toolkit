@@ -1,28 +1,21 @@
 import type { NextPage } from 'next';
 import Head from 'next/head';
-import Image from 'next/image';
 
-import { Button } from 'antd';
 import { Container } from '@mui/material';
+
 import styles from '../assets/styles/scss/main.module.scss';
-import { useAppDispatch, useAppSelector } from '../hooks/reduxHooks';
-import { useGetProductsQuery } from "../store/reducers/itemSlice";
-import Header from "../components/Header/Header"
-import MainPageProductSlider from "../components/sections/MainPageProductSlider/MainPageProductSlider"
-import HotDeal from "../components/sections/HotDeal//HotDeal"
-import Product from "../components/sections/Product/Product"
-import Footer from "../components/Footer/Footer"
-import Navbar from "../components/Header/Navbar/Navbar"
+import Footer from '../components/Footer/Footer';
+import Header from '../components/Header/Header';
+import Navbar from '../components/Header/Navbar/Navbar';
+import HotDeal from '../components/sections/HotDeal//HotDeal';
+import MainPageProductSlider from '../components/sections/MainPageProductSlider/MainPageProductSlider';
+import Product from '../components/sections/Product/Product';
+import { useGetProductsQuery } from '../store/reducers/itemSlice';
 
 const Home: NextPage = () => {
-    const dispatch = useAppDispatch();
-    // const count = useAppSelector(selectCount);
+    const { data } = useGetProductsQuery();
 
-    const {
-        data, error, isLoading
-      }  = useGetProductsQuery();
-
-  const  product = data?.products?.slice(0,1)
+    const product = data?.products?.slice(0, 1);
     return (
         <div className={styles.container}>
             <Head>
@@ -31,18 +24,16 @@ const Home: NextPage = () => {
                 <link rel="icon" href="/favicon.ico" />
             </Head>
 
-            <Navbar/>
-<Container>
-<Header product={product}
-
-/> 
-<MainPageProductSlider/>
-</Container>
-<HotDeal/> 
-<Container>
-<Product/>
-    </Container>
-<Footer/>
+            <Navbar />
+            <Container>
+                <Header product={product} />
+                <MainPageProductSlider />
+            </Container>
+            <HotDeal />
+            <Container>
+                <Product />
+            </Container>
+            <Footer />
         </div>
     );
 };

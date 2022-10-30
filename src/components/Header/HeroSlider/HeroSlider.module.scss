@@ -1,53 +1,51 @@
 @import 'assets/styles/scss/main.module.scss';
 
-
-.containerDiv{
+.containerDiv {
     grid-column: 2;
     margin-top: 50px;
-background-color: green;
-height: 400px;
-width: 800px;
-position: relative; 
+    background-color: green;
+    height: 400px;
+    width: 800px;
+    position: relative;
 
-& .slider{
-    height: 100%;
-     width: 100%;
-     background-size: cover;
-     background-repeat: no-repeat;
-     position: relative; 
-}
-
-& .description {
-    position: absolute;
-   width: 100%;
-   background-color: $backgroundColor;
-    bottom: -50px;
-}
-
-& .discount {
-    position: absolute;
-    right: 10px;
-    top: 10px;
-    border: 2px solid white;
-    background: red;
-    height: 70px;
-width: 70px;
-border-radius: 100%;
-    @include center-div;
-    span {
-        color: white;
+    & .slider {
+        height: 100%;
+        width: 100%;
+        background-size: cover;
+        background-repeat: no-repeat;
+        position: relative;
     }
-}
 
-& .leftArrow {
-    position: absolute;
-     top: 30%; 
-     left: 0
+    & .description {
+        position: absolute;
+        width: 100%;
+        background-color: $backgroundColor;
+        bottom: -50px;
+    }
 
-}
-& .rightArrow {
-    position: absolute;
-    top: 30%;
-     right: 0
-}
+    & .discount {
+        position: absolute;
+        right: 10px;
+        top: 10px;
+        border: 2px solid white;
+        background: red;
+        height: 70px;
+        width: 70px;
+        border-radius: 100%;
+        @include center-div;
+        span {
+            color: white;
+        }
+    }
+
+    & .leftArrow {
+        position: absolute;
+        top: 30%;
+        left: 0;
+    }
+    & .rightArrow {
+        position: absolute;
+        top: 30%;
+        right: 0;
+    }
 }

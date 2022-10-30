@@ -1,20 +1,17 @@
-import React, {useState} from "react";
-import Navigation from "./Navigation/Navigation"
-import HeroSlider from "./HeroSlider/HeroSlider"
+import React from 'react';
 
-const Header: React.FC = ({product}) => {
+import HeroSlider from './HeroSlider/HeroSlider';
+import Navigation from './Navigation/Navigation';
 
-return (
-<>
-<div style={{display: "grid", gridTemplateColumns: "250px, 1fr"}}>
- <Navigation/>
-   <HeroSlider product={product}
+const Header: React.FC = ({ product }) => {
+    return (
+        <>
+            <div style={{ display: 'grid', gridTemplateColumns: '250px, 1fr' }}>
+                <Navigation />
+                <HeroSlider product={product} />
+            </div>
+        </>
+    );
+};
 
-   />
-</div>
-
-</>
-)
-}
-
-export default Header
+export default Header;

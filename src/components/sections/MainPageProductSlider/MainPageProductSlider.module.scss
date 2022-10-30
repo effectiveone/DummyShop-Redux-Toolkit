@@ -1,73 +1,75 @@
 @import 'assets/styles/scss/main.module.scss';
 
-
-  .border{
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-padding-bottom: 50px;
-gap: 20px;
-  & .props {
-    background-color: $backgroundColorDuo;
-    height: 200px;
-    @include center-div;
-
- 
-  }
-  }
+.border {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    padding-bottom: 50px;
+    gap: 20px;
+    & .props {
+        background-color: $backgroundColorDuo;
+        height: 200px;
+        gap: 20px;
+        font-size: 20px;
+        @include center-div;
+        @include column-div;
+        &:hover {
+            background-color: $backgroundColor !important;
+        }
+    }
+}
 
 .slideContainer {
     border: 1px solid black;
     background-color: white;
     width: 180px;
-    &> img {
+    & > img {
         height: 270px;
         width: 180px;
     }
-   &:hover {
+    &:hover {
         border: 2px solid red;
-
     }
 }
 
 .box {
-    padding: 10px 5px 5px 5px; 
+    padding: 10px 5px 5px 5px;
     color: black;
     display: grid;
-   
+
     grid-template-rows: 40px 50px 40px 50px;
-    &> div:nth-child(1)  {
+    & > div:nth-child(1) {
         display: grid;
         grid-template-colums: 1fr 1fr 1fr;
-        grid-template-rows: 1fr
+        grid-template-rows: 1fr;
     }
-    &> div:nth-child(2) >h3 {
+    & > div:nth-child(2) > h3 {
         color: black;
     }
-    &> div:nth-child(3) {
+    & > div:nth-child(3) {
         @include center-div;
-        background-Color: red;
+        background-color: red;
         color: rgba(87, 153, 239, 1);
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
         &:hover {
-            background-color: rgba(60,	60,	60, 0.8);
+            background-color: rgba(60, 60, 60, 0.8);
         }
     }
-    &> div:nth-child(4) {
+    & > div:nth-child(4) {
         @include center-div;
-    &:hover {
-        background-color: $backgroundColor;
-    }
+        &:hover {
+            background-color: $backgroundColor;
+        }
     }
 }
 
 .productPrice {
-    color: #D10024;
+    color: #d10024;
     font-size: 18px;
     .productOldPrice {
         font-size: 70%;
         font-weight: 400;
-        color: #8D99AE;
+        color: #8d99ae;
     }
 }

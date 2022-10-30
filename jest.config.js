@@ -1,54 +1,54 @@
-// // Sync object
-// const config = {
-//     preset: "ts-jest",
-//     verbose: true,
-//     // Your jest setup file
-//     setupFilesAfterEnv: ['<rootDir>/jest.setup.ts'],
-//     // Ignore the following directories
-//     testPathIgnorePatterns: ['<rootDir>/.next/', '<rootDir>/node_modules/'],
-//     // Enables CSS modules
-//     moduleNameMapper: {
-//         '\\.(scss|sass|css)$': 'identity-obj-proxy'
-//     },
-//     //For Jest (27 or later), jsdom is no longer the default environment.
-//     testEnvironment: 'jest-environment-jsdom',
-//     // E.g - to make custom test utilities accessible in Jest test files without using relative imports
-//     moduleDirectories: [
-//         'node_modules',
-//         // add the directory with the test-utils.js file, for example:
-//         './src/utils/test-utils' // a utility folder
-//     ],
-//     moduleFileExtensions: ["ts", "tsx", "js", "jsx", "json", "node"],
-//     transform: {
-//         '^.+\\.(ts|tsx)?$': 'ts-jest',
-//         '^.+\\.(js|jsx)$': 'babel-jest',
-//         '^.+\\.svg$': '<rootDir>/svgTransform.js'
-//     },
-//     globals: {
-//         "ts-jest": {
-//           tsConfig: {
-//             // allow js in typescript
-//             allowJs: true,
-//           },
-//         },
-//       }
-// };
+// Sync object
+const config = {
+    preset: "ts-jest",
+    verbose: true,
+    // Your jest setup file
+    setupFilesAfterEnv: ['<rootDir>/jest.setup.ts'],
+    // Ignore the following directories
+    testPathIgnorePatterns: ['<rootDir>/.next/', '<rootDir>/node_modules/'],
+    // Enables CSS modules
+    moduleNameMapper: {
+        '\\.(scss|sass|css)$': 'identity-obj-proxy'
+    },
+    //For Jest (27 or later), jsdom is no longer the default environment.
+    testEnvironment: 'jest-environment-jsdom',
+    // E.g - to make custom test utilities accessible in Jest test files without using relative imports
+    moduleDirectories: [
+        'node_modules',
+        // add the directory with the test-utils.js file, for example:
+        './src/utils/test-utils' // a utility folder
+    ],
+    moduleFileExtensions: ["ts", "tsx", "js", "jsx", "json", "node"],
+    transform: {
+        '^.+\\.(ts|tsx)?$': 'ts-jest',
+        '^.+\\.(js|jsx)$': 'babel-jest',
+        '^.+\\.svg$': '<rootDir>/svgTransform.js'
+    },
+    globals: {
+        "ts-jest": {
+          tsConfig: {
+            // allow js in typescript
+            allowJs: true,
+          },
+        },
+      }
+};
 
-// module.exports = config;
-// jest.config.js
-// module.exports = {
-//     setupFilesAfterEnv: ['<rootDir>/jest.setup.ts'],
-//     testPathIgnorePatterns: ['<rootDir>/.next/', '<rootDir>/node_modules/'],
-//     moduleNameMapper: {
-//         '\\.(scss|sass|css)$': 'identity-obj-proxy'
-//     },
-//     moduleDirectories: [
-//         'node_modules',
-//         'src',
-//         './src/utils/test-utils'
-//     ],
-// };
-// jest.config.js
+module.exports = config;
+jest.config.js
+module.exports = {
+    setupFilesAfterEnv: ['<rootDir>/jest.setup.ts'],
+    testPathIgnorePatterns: ['<rootDir>/.next/', '<rootDir>/node_modules/'],
+    moduleNameMapper: {
+        '\\.(scss|sass|css)$': 'identity-obj-proxy'
+    },
+    moduleDirectories: [
+        'node_modules',
+        'src',
+        './src/utils/test-utils'
+    ],
+};
+jest.config.js
 module.exports = {
     collectCoverageFrom: ['**/*.{js,jsx,ts,tsx}', '!**/*.d.ts', '!**/node_modules/**'],
     moduleNameMapper: {

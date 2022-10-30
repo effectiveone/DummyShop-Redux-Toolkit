@@ -1,13 +1,12 @@
 @import 'assets/styles/scss/main.module.scss';
 
 .container {
-    &  .btn {
+    & .btn {
         background-color: red;
         border-radius: 10%;
         width: 200px;
         color: white;
         height: 50px;
-
     }
     background-size: cover;
     background-position: center;
@@ -17,18 +16,18 @@
     width: 100%;
     @include center-div;
     @include column-div;
-    &>div {
+    & > div {
         gap: 20px;
     }
     & .grid {
         display: grid;
-  
+
         grid-template-columns: repeat(4, 1fr);
         & .column {
             @include column-div;
             @include center-div;
             gap: 10px;
-font-size: 20px;
+            font-size: 20px;
             background-color: red;
             border: 1px solid black;
             border-radius: 100%;
@@ -36,9 +35,5 @@ font-size: 20px;
             width: 100px;
             color: white;
         }
-
-    
     }
-
-
 }
