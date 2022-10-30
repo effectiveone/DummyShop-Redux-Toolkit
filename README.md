@@ -32,6 +32,7 @@ I combined power from redux toolkit, using RTK Query to fetching date from API E
 - [Material Styles](https://mui.com/system/styles/basics/) 
 - [Material Icons](https://mui.com/material-ui/material-icons/#main-content) 
 - [Redux Toolkit](https://redux-toolkit.js.org/introduction/getting-started)
+- [RTK Query](https://redux-toolkit.js.org/introduction/getting-started)
 - [React-Redux](https://react-redux.js.org/introduction/getting-started)
 - [React-Router V6](https://v6.reactrouter.com/web/guides/quick-start)
 - [AXIOS](https://axios-http.com/docs/intro)
