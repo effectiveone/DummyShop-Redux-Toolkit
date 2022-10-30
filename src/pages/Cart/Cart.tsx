@@ -11,7 +11,9 @@ import React, {useState, useEffect} from "react";
     getCartTotal } from "../../store/reducers/cartSlice";
   import uuid from "react-uuid"
   import Link from "next/link"
-  
+  import Footer from "../../components/Footer/Footer"
+import Navbar from "../../components/Header/Navbar/Navbar"
+
   function ProductList({ products }) {
     const dispatch = useAppDispatch();
 
@@ -142,7 +144,7 @@ import React, {useState, useEffect} from "react";
   
     return (
       <div>
-  
+  <Navbar/>
         {shoppingList.length > 0 ? (
           <div>
             <ProductList
@@ -155,9 +157,11 @@ import React, {useState, useEffect} from "react";
         ) : (
           <div className={style.emptyProduct}>
             <h3>There are no products in your cart.</h3>
-            <button onClick={() => setProducts(PRODUCTS)}>Shopping now</button>
+            <Link href={`/`}><button >Shopping now</button></Link>
+        
           </div>
         )}
+        <Footer/>
       </div>
     );
   }

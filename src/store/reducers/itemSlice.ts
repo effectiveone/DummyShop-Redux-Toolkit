@@ -18,7 +18,7 @@ export const DummyShopApi = createApi({
         },
       }),
       getSearchProduct: builder.mutation({
-        query: ({ query }) => {
+        query: ( query ) => {
           return {
             url: `/products/search?q=${query}`,
             method: "get",  

@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, {useState} from 'react';
 import { styled, alpha } from '@mui/material/styles';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
@@ -71,6 +71,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 export default function PrimarySearchAppBar() {
+  const [name, setName] = useState("")
   const card = useSelector((state) => state.card);
   const watchList = useSelector((state) => state.watchList);
   const  NumberItemsInCard = card.items.length;
@@ -189,16 +190,20 @@ export default function PrimarySearchAppBar() {
             component="div"
             sx={{ display: { xs: 'none', sm: 'block' } }}
           >
-            <img src={Logo.src} height="80px" width="150px"/>
+            <Link href={`/`}><img src={Logo.src} height="80px" width="150px"/></Link>
           </Typography>
+          <div style={{marginLeft: "200px", marginRight: "-200px"}}>
+          <Link href={`/search/${name}`}><SearchIcon /></Link>
+          </div>
           <Search>
             <SearchIconWrapper>
-              <SearchIcon />
             </SearchIconWrapper>
             <StyledInputBase
               placeholder="Search…"
               inputProps={{ 'aria-label': 'search' }}
+              onChange={({target: {value}}) => setName(value)}
             />
+
           </Search>
           <Box sx={{ flexGrow: 1 }} />
           <Box sx={{ display: { xs: 'none', md: 'flex' } }}>

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import  {useGetProductFromCategoryMutation}  from "../../store/reducers/itemSlice";
+import  {useGetSearchProductMutation}  from "../../store/reducers/itemSlice";
 import { Slider } from '@mui/material';
 import { useRouter } from 'next/router'
 import SlideSchema from "../../components/sections/MainPageProductSlider/SlideSchema"
@@ -8,7 +8,7 @@ import { Container } from '@mui/material';
 import Footer from "../../components/Footer/Footer"
 import Navbar from "../../components/Header/Navbar/Navbar"
 
-const Categories: React.FC = () => {
+const Search: React.FC = () => {
     const [downAndUp, setDownAndUp] = useState(true)
     const [sortMethod, setSortMethod] = useState("title")
   const handleChange = (e) => {
@@ -17,12 +17,12 @@ const Categories: React.FC = () => {
     const router = useRouter()
     const [selectedCategory, setSelectedCategory] = useState()
     const { slug } = router.query
-    const [getProductFromCategory,  { isLoading, data }] = useGetProductFromCategoryMutation()
+    const [getSearchProduct,  { isLoading, data }] = useGetSearchProductMutation()
 
     useEffect(() => {
      
         
-        getProductFromCategory( slug ).unwrap().then(fulfilled => {setSelectedCategory(fulfilled)});
+        getSearchProduct( slug ).unwrap().then(fulfilled => {setSelectedCategory(fulfilled)});
         // setSelectedCategory(data)
     
 
@@ -79,7 +79,7 @@ return (<>
 
 
 <Navbar/>
-<Container maxWidth="xl" style={{paddingBottom: "100px"}}>
+<Container maxWidth="xl" style={{marginBottom: "950px"}}>
 <div style={{backgroundColor: "yellow", width: "100%", height: "50px", position: "relative"}}>
     <div style={{position: "absolute",
      left: "50%",
@@ -144,4 +144,4 @@ display: "flex",
 <Footer/>
     </>)}
 
-    export default Categories
+    export default Search

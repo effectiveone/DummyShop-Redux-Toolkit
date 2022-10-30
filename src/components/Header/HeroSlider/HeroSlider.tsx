@@ -1,6 +1,9 @@
 import React, {useState} from "react";
 import style from "./HeroSlider.module.scss";
 import Arrows from "../../Arrows/Arrows"
+import { useAppDispatch, useAppSelector } from '../../../hooks/reduxHooks';
+import { addToCart } from "../../../store/reducers/cartSlice";
+
 const HeroSlider: React.FC = ({product}) => {
     const [numSlider, setNumSlider] = useState(0)
     const DecrementCount = () => {
@@ -14,7 +17,29 @@ const HeroSlider: React.FC = ({product}) => {
     }
 
    
+    const dispatch = useAppDispatch();
 
+
+
+    const FavHanlder = (item) => {
+    
+     dispatch(
+         addToCart({
+          amount: 1,   
+         id: item.id,
+         title: item.title,
+         thumbnail: item.thumbnail,
+         description: item.description,
+         price: item.price,
+         discountPercentage: item.discountPercentage,
+         rating: item.rating,
+         stock: item.stock,
+         brand: item.brand,
+         category: item.category
+       })
+       
+     );
+   };
 
   
     return (
@@ -32,7 +57,7 @@ const HeroSlider: React.FC = ({product}) => {
 <span>{pro.rating}</span>
 <span>{pro.price}</span></div>
 <div className={style.discount}><span>{pro.discountPercentage.toFixed(0)}%</span></div>
-<button>add to card</button>
+<button onClick={() => FavHanlder(pro)}>add to card</button>
 </div>
 
 ))}
